@@ -1,7 +1,10 @@
 {% extends "base.html" %} {% block content %}
 <h1>Hi, {{ current_user.email }}!</h1>
-{% for post in posts %}
-<div>
-    <p>{{ post.author.username }} says: <b>{{ post.body }}</b></p>
-</div>
-{% endfor %} {% endblock %}
+
+<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+<script type="text/javascript" src="static/js/loadopenstreet.js"></script>
+
+<h2>OpenStreetMap</h2>
+<div id="OSMap" style="position:absolute; width:900px; height:400px;"></div>
+
+{% endblock %}
