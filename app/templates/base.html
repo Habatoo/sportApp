@@ -29,10 +29,6 @@
                 <li class="nav-item ">
                     <a class="nav-link " href="{{ url_for( 'logout') }} ">Logout</a>
                 </li>
-
-                <li class="nav-item ">
-                    <a class="nav-link " href="{{ url_for( 'user', username=current_user.username) }} ">Profile</a>
-                </li>
                 {% endif %}
             </ul>
         </div>
@@ -56,18 +52,18 @@
                     </div>
                 </div>
 
-                {% if not current_user.is_anonymous %}
                 <!-- Sidebar -->
+                {% if not current_user.is_anonymous %}
                 <nav>
                     <ul>
                         <li>
-                            <a href="#homeSubmenu">Friends</a>
+                            <a href="{{ url_for( 'user', username=current_user.username) }} ">Profile</a>
                         </li>
                         <li>
-                            <a href="#pageSubmenu">Gangs</a>
+                            <a href="{{ url_for( 'posts', username=current_user.username) }} ">Posts</a>
                         </li>
                         <li>
-                            <a href="#">Posts</a>
+                            <a href="#">Events</a>
                         </li>
                     </ul>
                 </nav>
@@ -75,7 +71,6 @@
             </td>
             <td>
                 <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-
                 <script>
                     function time() {
                         return parseInt(new Date().getTime() / 1000)
@@ -84,7 +79,6 @@
                 </script>
                 <script type="text/javascript" src="static/js/loadopenstreet.js?{{ time_u }}">
                 </script>
-
                 <!-- -->
                 <div id="OSMap" style="position:absolute; width:1000px; height:500px;"></div>
 
