@@ -37,20 +37,62 @@
             </ul>
         </div>
     </nav>
-    <div class="container ">
-        <div class="raw ">
-            <h1>
-                {% block content_title %} {% endblock %}
-            </h1>
-            {% with messages = get_flashed_messages() %} {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %} {% endwith %} {% block content %} {% endblock %}
-        </div>
-    </div>
+
+    <table>
+        <tr valign="top">
+            <td>
+                <div>
+                    <div>
+                        <h1>
+                            {% block content_title %} {% endblock %}
+                        </h1>
+                        {% with messages = get_flashed_messages() %} {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %} {% endwith %} {% block content %} {% endblock %}
+                    </div>
+                </div>
+
+                {% if not current_user.is_anonymous %}
+                <!-- Sidebar -->
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#homeSubmenu">Friends</a>
+                        </li>
+                        <li>
+                            <a href="#pageSubmenu">Gangs</a>
+                        </li>
+                        <li>
+                            <a href="#">Posts</a>
+                        </li>
+                    </ul>
+                </nav>
+                {% endif %}
+            </td>
+            <td>
+                <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+
+                <script>
+                    function time() {
+                        return parseInt(new Date().getTime() / 1000)
+                    }
+                    time_u = (time()) / 1300051970
+                </script>
+                <script type="text/javascript" src="static/js/loadopenstreet.js?{{ time_u }}">
+                </script>
+
+                <!-- -->
+                <div id="OSMap" style="position:absolute; width:1000px; height:500px;"></div>
+
+            </td>
+        </tr>
+    </table>
+
+
 </body>
 
 </html>
